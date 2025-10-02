@@ -2,6 +2,8 @@ import { Switch, Route } from "wouter"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import Home from "./pages/Home"
 import Layout from "./components/layout/Layout"
+import Devices from "./pages/Devices"
+import ApiExterna from "./pages/ApiExterna"
 
 function App() {
 
@@ -18,8 +20,8 @@ function App() {
       <Layout>
         <Switch>
           <Route path="/" component={Home}/>
-          <Route path="/login" component={Home}/>
-
+          <Route path="/devices" component={Devices}/>
+          <Route path="/api" component={ApiExterna}/>
         </Switch>
       </Layout>
     </QueryClientProvider>

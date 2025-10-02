@@ -1,16 +1,27 @@
 import { useUserStore } from "../store/store";
 import LoginForm from "../components/LoginForm";
 import Welcome from "../components/Welcome";
+import Menu from "../components/Menu";
+import { formatModules } from "../utils/formatModules";
 
 
 const Home = () => {
-  const { user } = useUserStore();
+  const { userData } = useUserStore();
+  
+  const modules = userData && userData.modules.sort((a, b) => a.id_module - b.id_module);
+  const formattedModules = modules && formatModules(modules);
 
-  if(user) console.log(user);
   return (
-    <div>
-      { user ? <Welcome /> : <LoginForm /> }
-    </div>
+    <>
+      { userData ? 
+        <div className="h-full flex items-center gap-8">
+          <Menu modules={formattedModules!}/>
+          <Welcome />
+        </div>
+        : 
+        <LoginForm /> 
+      }
+    </>
   );
 }
  

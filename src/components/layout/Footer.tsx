@@ -1,7 +1,9 @@
 const Footer = () => {
   return (
-    <footer className="max-w-[1000px] h-16 flex items-center justify-center mx-auto mt-12">
-      <p className="text-center text-primary-100">2025 - Desarrollado por Aselga</p>
+    <footer className=" h-20 flex items-center justify-center border-t-1 border-primary-500/30 mx-auto">
+      <div className="max-w-[1200px]">
+        <p className="font-semibold text-center text-primary-100">2025 - Prueba Técnica</p>
+      </div>
     </footer>
   );
 }
