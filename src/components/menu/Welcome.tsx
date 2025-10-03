@@ -1,5 +1,5 @@
-import { useUserStore } from "../store/userStore";
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
+import { useUserStore } from "../../store/userStore";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 const Welcome = () => {
   const { userData } = useUserStore();
@@ -10,8 +10,8 @@ const Welcome = () => {
     <>
       { userData && 
         <div className="w-full h-60 flex flex-col items-center gap-4 mx-auto">
-          <h2 className="text-7xl text-primary-100 font-semibold">Bienvenido!</h2>
-          <h3 className="text-4xl text-primary-500 font-semibold underline underline-offset-5">
+          <h2 className="text-5xl text-primary-100 font-semibold sm:text-7xl">Bienvenido!</h2>
+          <h3 className="text-2xl text-primary-500 font-semibold underline underline-offset-5 sm:text-4xl">
             { name + ' ' + lastName }
           </h3>
         </div>

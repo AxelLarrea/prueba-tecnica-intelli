@@ -6,10 +6,10 @@ export interface ModuleNode extends Module {
 }
 
 export function formatModules(modules: Module[]): ModuleNode[] {
-  // Crear un map para acceso rápido por path
+  // Crear un map de módulos para acceso rápido por path, se guardan en tuplas (path, módulo)
   const moduleMap = new Map<string, ModuleNode>();
   
-  // Inicializar todos los nodos con array vacío en children
+  // Inicializar todos los nodos con array vacío en children donde irán los submódulos
   modules.forEach(module => {
     moduleMap.set(module.path, {
       ...module,
@@ -38,7 +38,7 @@ export function formatModules(modules: Module[]): ModuleNode[] {
         // Si tiene nodo padre, se agrega como hijo
         parentNode.children.push(currentNode);
       } else {
-        // Si no existe el padre, agregar como raíz (caso de datos incompletos)
+        // Si no existe el padre, agregar como raíz
         rootNodes.push(currentNode);
       }
     }

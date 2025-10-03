@@ -1,5 +1,5 @@
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
-import type { ModuleNode } from "../utils/formatModules";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
+import type { ModuleNode } from "../../utils/formatModules";
 import { ChevronRightIcon } from "lucide-react";
 
 interface Props {
@@ -11,18 +11,19 @@ interface Props {
 const MenuItem = ({ module, openPaths, handleToggle }: Props) => {
   const { children } = module;
   
-  const name = module.module.split('_').map(word => capitalizeFirstLetter(word)).join('');
+  const name = module.module.split('_').map(word => capitalizeFirstLetter(word)).join(' ');
   const isOpen = openPaths.has(module.path);
   const hasChildren = children.length > 0;
 
   // const multiplyer = [0, 3, 9, 12] // multiplicadores según el nivel del módulo
   
+  const isOpenClasses = isOpen ? 'text-primary-100 underline underline-offset-3' : 'text-primary-500';
 
   return (
     <div className="w-full flex flex-col items-center cursor-pointer">
       {/* Info del módulo */}
       <div 
-        className="group relative w-full flex items-center justify-between hover:underline hover:underline-offset-3 hover:text-primary-100"
+        className={`${isOpenClasses} group relative w-full flex items-center justify-between hover:underline hover:underline-offset-3 hover:text-primary-100 `}
         style={{ paddingLeft: `${module.level * 16}px` }}
         onClick={() => handleToggle(module.path)}
       >
@@ -33,7 +34,7 @@ const MenuItem = ({ module, openPaths, handleToggle }: Props) => {
             style={{ left: `${module.level * multiplyer[module.level]}px` }}
           ></span> 
           } */}
-        <p className="text-primary-500 font-semibold text-base group-hover:text-primary-100">{name}</p>
+        <p className={`font-semibold text-base group-hover:text-primary-100 ${isOpenClasses}`}>{name}</p>
         { hasChildren &&
           <ChevronRightIcon
             size={15}
