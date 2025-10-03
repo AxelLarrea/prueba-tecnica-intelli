@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUserStore } from "../store/store";
+import { useUserStore } from "../store/userStore";
 
 const LoginForm = () => {
   const [isError, setIsError] = useState(false);
@@ -60,7 +60,7 @@ const LoginForm = () => {
       </div>
 
       <button 
-        className={`${btnBorder} text-primary-100 border-2 rounded-md cursor-pointer transition hover:border-primary-100 py-2`}
+        className={`${btnBorder} text-primary-100 border-1 rounded-md cursor-pointer transition hover:border-primary-100 py-2`}
         type="submit"
       >
         { isLoading ? 

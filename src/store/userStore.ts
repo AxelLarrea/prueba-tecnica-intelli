@@ -1,12 +1,13 @@
 import { create } from "zustand";
+import type { UserStore } from "./types/userStore.types";
 import authService from "../services/authService";
-import type { UserStore } from "./types/store.types";
 
 export const useUserStore = create<UserStore>((set) => ({
   userData: null,
   isLoading: false,
 
   // Actions
+  // TODO: agregar un timer para expiración de token
   login: async (email: string, password: string) => {
     try {
       set({ isLoading: true });

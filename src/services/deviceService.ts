@@ -1,39 +1,27 @@
-import type { AuthData } from "./types/authService.types";
+import type { DeviceData } from "./types/deviceService.types";
 
-class AuthService {
+class deviceService {
   readonly endpoint = 'https://api.qa.myintelli.net/v1/devices'  
-  // estructura completa: https://api.qa.myintelli.net/v1/devices?limit=0&offset=0&search=''
 
-  async login(email: string, password: string): Promise<AuthData> {
-    const response = await fetch(this.endpoint, {
-      method: 'POST',
+  async getDevices(limit: number, offset: number, search: string): Promise<DeviceData> {
+
+    const url = `${this.endpoint}?limit=${limit}&offset=${offset}&search=${search}`
+    const response = await fetch(url, {
+      method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('token'),
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
     })
     
     if (!response.ok) {
-      throw new Error('Error al iniciar sesión');
+      throw new Error('Error al obtener dispositivos');
     }
 
     const data = await response.json();
 
-    const user = {
-      email: data.user.email,
-      first_name: data.user.first_name,
-      last_name: data.user.last_name
-    }
-
-    const cleanData = {
-      token: data.token,
-      user: user,
-      modules: data.modules
-    }
-
-    return cleanData;
+    return data.data;
   }
 }
 
-export default new AuthService();
+export default new deviceService();

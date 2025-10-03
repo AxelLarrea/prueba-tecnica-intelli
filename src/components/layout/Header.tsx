@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { useUserStore } from "../../store/store";
+import { useUserStore } from "../../store/userStore";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 const Header = () => {

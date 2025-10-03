@@ -1,4 +1,4 @@
-import { useUserStore } from "../store/store";
+import { useUserStore } from "../store/userStore";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 const Welcome = () => {

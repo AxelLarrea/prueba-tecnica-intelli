@@ -1,4 +1,4 @@
-import { useUserStore } from "../store/store";
+import { useUserStore } from "../store/userStore";
 import LoginForm from "../components/LoginForm";
 import Welcome from "../components/Welcome";
 import Menu from "../components/Menu";
@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       { userData ? 
-        <div className="h-full flex items-center gap-8">
+        <div className="flex flex-1 items-center gap-8">
           <Menu modules={formattedModules!}/>
           <Welcome />
         </div>
