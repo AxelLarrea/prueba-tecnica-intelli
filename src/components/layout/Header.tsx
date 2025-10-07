@@ -9,7 +9,7 @@ const Header = () => {
   const name = userData && capitalizeFirstLetter(userData.user.first_name)
 
   return (
-    <header className="h-25 flex flex-col items-center justify-center border-b-1 border-border p-4 px-8">
+    <header className="h-25 flex flex-col items-center justify-center border-b-1 border-border py-4 px-4 xl:px-8">
       <div className="w-full flex items-center justify-between mx-auto">
         <h1 className="text-3xl text-primary-100 font-bold">
           <a href="/">
