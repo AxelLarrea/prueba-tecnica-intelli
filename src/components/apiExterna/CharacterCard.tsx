@@ -15,45 +15,50 @@ interface Props {
 const Card = ({ name, gender, imageUrl, state, species, location, origin }: Props) => {
   const [isClick, setIsClick] = useState(false);
   const formattedName = name.split(' ').map(word => capitalizeFirstLetter(word)).join(' ');
-  const cleanState = state === 'unknown' ? capitalizeFirstLetter(state) : state;
 
-  const colors: { [key: string]: string } = {
-    Alive: 'bg-green-500',
-    Dead: 'bg-red-500',
-    unknown: 'bg-gray-400'
-  };
-    
-  const color = colors[state]
+  const stateTrad: { [key: string]: string } = {
+    unknown: "Desconocido",
+    Alive: "Vivo",
+    Dead: "Muerto"
+  }
 
   return (
     <div 
-      className="relative w-45 h-70 flex flex-col shadow-[0_1px_5px] shadow-primary-500/80 rounded-md cursor-pointer hover:-translate-y-2 transition-all"
+      className="group relative flex flex-col border border-border shadow-sm rounded-xl overflow-hidden hover:shadow-md transition-all duration-200"
       style={{ zIndex: isClick ? 1 : 0 }}
-      onClick={() => setIsClick(!isClick)}
       onMouseLeave={() => setIsClick(false)}
     >
-      <img src={imageUrl} alt={name} height={200} width={180} className="w-full h-50 rounded-t-md object-cover" />
+      <img src={imageUrl} alt={name} height={200} width={180} className="w-full h-50 rounded-t-lg object-cover group-hover:scale-102 transition-all" />
 
-      <div className="mt-4">
-        <h3 className="text-primary-200 font-semibold text-lg text-center line-clamp-1">{formattedName}</h3>
+      <div className="flex flex-col p-4">
+        <h3 className="font-semibold text-lg line-clamp-1">{formattedName}</h3>
+
         { state &&
-          <div className="flex items-center justify-center gap-2">
-            <span className={`${color} size-2 rounded-full`}></span>
-            <p className="text-sm font-semibold rounded-md text-primary-500/80">
-              {cleanState}
+          <div className="flex justify-between gap-2 mt-2">
+            <span className="text-sm text-secondary-100">Estado: </span>
+            <p className="text-sm text-primary font-medium flex justify-between">
+              {stateTrad[state]}
             </p>
           </div>
         }
+
+        <button 
+          className="w-full font-semibold text-sm text-center text-primary border border-border rounded-md shadow-xs cursor-pointer hover:bg-background-accent transition-colors px-4 py-1 mt-4 mx-auto"
+          onClick={() => setIsClick(!isClick)}
+        >
+          Ver Detalles
+        </button>
       </div>
 
-      {/* MODAL */}
+      {/* Modal */}
       <CardModal 
         formattedName={formattedName} 
         gender={gender} 
         species={species} 
         location={location} 
         origin={origin} 
-        isClick={isClick} 
+        isClick={isClick}
+        setIsClick={setIsClick}
       />
     </div>
   );

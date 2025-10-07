@@ -11,4 +11,9 @@ export interface Device {
   device_model: string
   photo: string
   factory_family: string
+  settings_device: SettingDevice
+}
+
+export interface SettingDevice {
+  online: number
 }

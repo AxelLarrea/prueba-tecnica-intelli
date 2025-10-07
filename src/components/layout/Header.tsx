@@ -2,43 +2,47 @@ import { Link } from "wouter";
 import { useUserStore } from "../../store/userStore";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import SandwichMenu from "./SandwichMenu";
+import { UserIcon } from "lucide-react";
 
 const Header = () => {
   const { userData } = useUserStore();
   const name = userData && capitalizeFirstLetter(userData.user.first_name)
 
   return (
-    <header className="h-25 flex flex-col items-center justify-center border-b-1 border-primary-500/30 p-4">
-      <div className="max-w-[1200px] w-full flex items-center justify-between mx-auto">
-        <h1 className="text-3xl text-primary-100 font-semibold">
+    <header className="h-25 flex flex-col items-center justify-center border-b-1 border-border p-4 px-8">
+      <div className="w-full flex items-center justify-between mx-auto">
+        <h1 className="text-3xl text-primary-100 font-bold">
           <a href="/">
             Prueba
-            <span className="text-primary-500">Técnica</span>
+            <span className="text-primary">Técnica</span>
           </a>
         </h1>
 
         <nav className="hidden font-semibold items-center gap-4 lg:flex">
           <Link
             href="/" 
-            className={(active) => (active ? "underline underline-offset-3 text-primary-100" : "hover:underline hover:underline-offset-3 hover:text-primary-100")}
+            className={(active) => (active ? "text-primary" : "text-secondary-100 hover:text-secondary-500")}
           >
             Home
           </Link>
 
           <Link
             href="/devices" 
-            className={(active) => (active ? "underline underline-offset-3 text-primary-100" : "hover:underline hover:underline-offset-3 hover:text-primary-100")}
+            className={(active) => (active ? "text-primary" : "text-secondary-100 hover:text-secondary-500")}
           >
             Devices
           </Link>
         </nav>
 
-        { userData && 
-          <p className="hidden text-lg font-medium lg:block">Hola, 
-            <span className="text-primary-100 ml-1">
-              {name}
-            </span>
-          </p>
+        { userData &&
+          <div className="hidden bg-primary/15 items-center gap-2 rounded-full px-4 py-2 lg:flex ">
+            <UserIcon size={18} className="text-primary" />  
+            <p className="text-md font-medium">Hola, 
+              <span className="ml-1">
+                {name}
+              </span>
+            </p>
+          </div> 
         }
 
         <SandwichMenu />

@@ -1,10 +1,10 @@
 import { useUserStore } from "../store/userStore";
-import Welcome from "../components/menu/Welcome";
-import Menu from "../components/menu/Menu";
+import Menu from "../components/home/Menu";
 import { formatModules } from "../utils/formatModules";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/shared/Loading";
 import ErrorComponent from "../components/shared/ErrorComponent";
+import WelcomeSection from "../components/home/WelcomeSection";
 
 const userCredentials = { 
   email: 'carlospea13+1@gmail.com', 
@@ -32,13 +32,13 @@ const Home = () => {
   return (
     <>
       { userData && 
-        <div className="flex flex-1 items-center gap-8">
+        <div className="flex items-center sm:flex-1">
           <Menu 
             modules={formattedModules!}
             links={links}
             isMobile={false}
           />
-          <Welcome />
+          <WelcomeSection />
         </div>
       }
     </>

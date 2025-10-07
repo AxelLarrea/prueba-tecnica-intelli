@@ -8,7 +8,7 @@ export interface ModuleNode extends Module {
 export function formatModules(modules: Module[]): ModuleNode[] {
   // Crear un map de módulos para acceso rápido por path, se guardan en tuplas (path, módulo)
   const moduleMap = new Map<string, ModuleNode>();
-  
+
   // Inicializar todos los nodos con array vacío en children donde irán los submódulos
   modules.forEach(module => {
     moduleMap.set(module.path, {

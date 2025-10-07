@@ -7,7 +7,7 @@ interface Props {
 const ErrorComponent = ({ message }: Props) => {
   return (
     <div className="flex items-center gap-4 m-auto">
-      <BadgeAlertIcon size={30} className="text-primary-100" />
+      <BadgeAlertIcon size={30} className="text-primary" />
       <p className="text-primary-100 text-xl font-semibold">{message}</p>
     </div>
   );
